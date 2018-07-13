@@ -202,7 +202,7 @@ const listenForScroll = () => {
     let scroll = $(window).scrollTop()
     if(scroll > position && scroll > 200 && !$('.perfect-tweet-screen').hasClass('squished')){
       squishPerfectTweetBar()
-    } else if (scroll < 220  && $('.perfect-tweet-screen').hasClass('squished')) {
+    } else if (scroll < position && scroll < 220  && $('.perfect-tweet-screen').hasClass('squished')) {
       squishPerfectTweetBar()
     }
     position=scroll
