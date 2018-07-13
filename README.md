@@ -18,7 +18,7 @@ Must do -
 
 Cool features -
 
-- [ ] Make the gifs only play if they hovered or focused
+- [ ] Make the gifs only play if   they hovered or focused
 - [ ] Easy copy button
 - [ ] Calculating waiting screen
 - [ ] It tweets to a dummy account. (could be automatic... or maybe it's on a button)

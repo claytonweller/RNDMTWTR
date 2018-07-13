@@ -12,12 +12,13 @@ getGiphyFromSearch = (search) => {
 
 const populateGiphy = results => {
   STATE.giphy = results.data;
+  console.log(STATE.giphy)
   let output = results.data.map(renderGiphyObject);
   
   $(".giphy-gifs").html(output);
 }
 
 const renderGiphyObject = item => `
-    <div class="gif-block">
+    <button class="gif-block">
         <img src="${item.images.original.url}" alt="${item.title}" />
-    </div>`;
+    </button>`;
