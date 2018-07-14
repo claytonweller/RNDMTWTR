@@ -87,6 +87,7 @@ const listenForSearchButtonClick = () => {
 };
 
 const searchButtonClick = () => {
+  
   let topicField = $(".start-screen").find("input");
   STATE.topic = $(topicField).val();
   if (!STATE.topic) {
@@ -146,12 +147,11 @@ const resetInfo = () => {
     currentGifIndex:0,
     sentienceCountDown:10   
   };
-  $('.perfect-tweet-container').find('img').attr('src', './images/Loading.gif')
+  $('.perfect-tweet-container').find('img').attr('src', './assets/images/Loading.gif')
   $('.perfect-tweet-container').find('img').attr('alt', 'placeholder')
   $('.perfect-tweet-text-box').find('p').html('<span class="pulsing">Creating Tweet...</span>')
   populateTwitter()
   populateWiki()
-  // populateGiphy()
   populateNews()
 };
 
@@ -182,7 +182,6 @@ const listenForSquishClick = ()=>{
 }
 
 const listenForTweetTextClick = () => {
-  console.log('Tweet Text Listen')
   $('.perfect-tweet-screen').on('click', 'p', function(){
     if($('.perfect-tweet-screen').hasClass('squished')){
       squishPerfectTweetBar()
@@ -191,25 +190,39 @@ const listenForTweetTextClick = () => {
 }
 
 const squishPerfectTweetBar = () => {
-  console.log('squish') 
   $('.perfect-tweet-screen').toggleClass('squished')
-  window.scrollTo(0,0)
+  if(!$('.perfect-tweet-screen').hasClass('squished')){
+    window.scrollTo(0,0)
+  }
 }
 
 const listenForScroll = () => {
   let position = $(window).scrollTop()
-  $(window).scroll(function(){
+  $(window).scroll(function(){ 
     let scroll = $(window).scrollTop()
     if(scroll > position && scroll > 200 && !$('.perfect-tweet-screen').hasClass('squished')){
       squishPerfectTweetBar()
-    } else if (scroll < position && scroll < 220  && $('.perfect-tweet-screen').hasClass('squished')) {
+    } else if (scroll < position && scroll < 220 && scroll> 0 && $('.perfect-tweet-screen').hasClass('squished')) {
       squishPerfectTweetBar()
     }
     position=scroll
   })
-
 }
 
+const listenForMoreWikiClick = ()=>{
+  $('#more-wiki-button').click(function(){
+    let article = $('.info-wiki').find('article')
+    $(article).toggleClass('revealed')
+    console.log($(article).hasClass('.revealed'))
+    if($(article).hasClass('revealed')){
+      console.log('revealed')
+      $('#more-wiki-button').html('...less...')
+    }else{
+      console.log('NOT revealed')
+      $('#more-wiki-button').html('...more...')
+    }
+  })
+}
 
 ///This function is used by a couple of the API calls to make sure they work with ridiculously long strings
 
@@ -232,12 +245,13 @@ const handlePerfectTweetApp = () => {
   listenForRestartButtonClick()
   listenForTweetButtonClick()
   listenForReperfectClick()
-  listenForScroll()
   listenForSquishClick()
   listenForGifClick()
   listenForChosenGifClick()
   listenForTweetTextClick()
   wakeUpHerokuServer()
+  listenForScroll()
+  listenForMoreWikiClick()
 
 };
 

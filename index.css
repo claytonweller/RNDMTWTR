@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'gotham';
-  src: url('gotham_bold_regular-webfont.woff2') format('woff2'),
-       url('gotham_bold_regular-webfont.woff') format('woff');
+  src: url('./assets/gotham_bold_regular-webfont.woff2') format('woff2'),
+       url('./asstes/gotham_bold_regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -21,12 +21,22 @@ div {
   /* border: black 1px solid; */
 }
 
-p {
+p, pre {
   font-family: 'Gothic A1', sans-serif;
 }
 
-h1, h2, h3 {
+pre {
+  word-wrap: break-word;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1, h2, h3, a {
   font-family: gotham, sans-serif;
+}
+
+h3{
+  word-break: break-all;
 }
 
 .app-container{
@@ -257,6 +267,7 @@ button:focus, button:hover{
   max-width: 30%;
   align-self: flex-start;
   max-height: 100%;
+  width:auto;
 }
 
 .perfect-tweet-text-box {
@@ -357,10 +368,6 @@ button:focus, button:hover{
   border-radius:0px 0px 5px 5px
 }
 
-.squished .squish-button-container{
-  
-}
-
 /* END above the fold Perfext Tweet */
 
 .info-container {
@@ -426,15 +433,42 @@ button:focus, button:hover{
 
 .info-wiki{
   background-color: white;
-  padding: 1px 10px;
+  padding: 1px 15px;
   color: #024555;
   margin-bottom: 50px;
+  height: fit-content;
+}
+
+.info-wiki article {
+  max-height: 300px;  
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  top: -30px;
+}
+
+.info-wiki .revealed {
+  max-height: 100%;
+}
+
+.wiki-text {
+  width: 100%;
 }
 
 .info-wiki h1, .info-wiki p{
   padding:10px 0px;
   margin: 0px;
 }
+
+#more-wiki-button{
+  position: relative;
+  bottom: 15px;
+  border:none;
+  background-color: transparent;
+  color: #024555;
+}
+
+
 
 /* END wiki style */
 
@@ -580,6 +614,8 @@ button:focus, button:hover{
 
   /* STILL NEED TO REDO THE START PAGE */
 
+
+
   .squished .top-bar {
     display: flex;
   }
@@ -631,6 +667,7 @@ button:focus, button:hover{
   .perfect-tweet-container img {
     align-self: flex-start;
     width: 30%;
+    height: auto;
     max-height: 300px;
     max-width: 250px;
   }
@@ -667,6 +704,14 @@ button:focus, button:hover{
   
   .squished .info-giphy {
     margin-top: 200px;
+  }
+
+  #more-wiki-button{
+    display:none;
+  }
+
+  .info-wiki article{
+    max-height: 100%
   }
 
 }

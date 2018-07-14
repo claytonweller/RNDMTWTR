@@ -1,4 +1,4 @@
-const TWITTER_SEARCH_URL = "https://mysterious-ravine-96868.herokuapp.com/";
+const TWITTER_SEARCH_URL = "https://thawing-escarpment-24112.herokuapp.com/";
 
 const getTwitterFromSearch = (search) => {
 
