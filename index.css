@@ -295,7 +295,7 @@ button:focus, button:hover{
 
 
 .top-bar {
-  height: 50px;
+  height: 55px;
   background-color: #118AA6;
   display: flex;
   align-content: center;
@@ -304,8 +304,9 @@ button:focus, button:hover{
 }
 
 .top-bar img{
-  max-width:80%;
-  height: 95%;
+  /* max-width:30%; */
+  width:auto;
+  max-height: 85%;
   padding-top: 5px;
   padding-right:10px;
 }
