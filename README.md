@@ -1,36 +1,29 @@
 # The Perfect Tweet
 
-Github-Hosted - https://claytonweller.github.io/PerfectTweet/
+Live App- https://claytonweller.github.io/PerfectTweet/
 
-## Description
+## Marketing Description
 
-_Give us any topic, and we will create the perfect tweet... it definitely won't be terrible... probably..._
+_Give us any topic, and using the power of MACHINE LEARNING* we will create the perfect tweet!_
+_It definitely won't be terrible..._
+_Probably..._
+
+* Absolutely no machine learning is used in this app
+
+A perfect tweet isn’t made in a vacuum. It needs information and context to exist. We get as much context as possible by scraping not just 1 source, but 4! -
+
+Twitter logoGiphy logoNewsAPI LogoWikipedia logo
+Wikipedia: Tweet smart. 
+Twitter: Popular connetions. 
+NewsAPI: Be current. 
+Giphy: Catch the eye!
+
+Then using a “sophisticated” Machine Learning*** algorithm, we will synthesize all of this data into a tweet that will make you laugh, cry, and hopefully change the world.
+
+![TEST](https://raw.githubusercontent.com/claytonweller/PerfectTweet/master/assets/images/real-people/Girl1.jpg)
+
 
 ## Specs
 
-Must do -
-
-- [x] Landing page with description
-- [x] User inputs a topic
-- [x] Scrapes twitter, NewsAPI, Wikipedia, Giphy
-- [x] Displays data used from APIs
-- [x] Tries to create a perfect tweet
-- [x] User can input another topic
-- [ ] Gotta look guuuuuud
-
-Cool features -
-
-- [ ] Make the gifs only play if   they hovered or focused
-- [ ] Easy copy button
-- [ ] Calculating waiting screen
-- [ ] It tweets to a dummy account. (could be automatic... or maybe it's on a button)
-  - [ ] Shows a feed from the dummy account
-- [ ] User then can tweet directly to their account
-- [ ] User can edit the tweet
-  - [ ] Direct text edit
-  - [ ] Select Specific words to remove
-  - [ ] User can add other words to the 'perfect word list'
-- [ ] Incorporate facebook
-- [ ] Build in some grammer stuff
-- [ ] MACHINE LEARNING?!?!?
-- [ ] Gif toggle
+ for the user.
+A section on the technology used. For your capstone, this is fairly simple (HTML/CSS/JavaScript/jQuery) but it's still good to list out the key technologies.
