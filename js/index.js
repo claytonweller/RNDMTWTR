@@ -149,7 +149,7 @@ const resetInfo = () => {
   };
   $('.perfect-tweet-container').find('img').attr('src', './assets/images/Loading.gif')
   $('.perfect-tweet-container').find('img').attr('alt', 'placeholder')
-  $('.perfect-tweet-text-box').find('p').html('<span class="pulsing">Creating Tweet...</span>')
+  $('.perfect-tweet-text-box').find('p').html('<span class="blue-pulsing">Creating Tweet...</span>')
   populateTwitter()
   populateWiki()
   populateNews()
@@ -213,12 +213,9 @@ const listenForMoreWikiClick = ()=>{
   $('#more-wiki-button').click(function(){
     let article = $('.info-wiki').find('article')
     $(article).toggleClass('revealed')
-    console.log($(article).hasClass('.revealed'))
     if($(article).hasClass('revealed')){
-      console.log('revealed')
       $('#more-wiki-button').html('...less...')
     }else{
-      console.log('NOT revealed')
       $('#more-wiki-button').html('...more...')
     }
   })

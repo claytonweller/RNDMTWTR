@@ -9,7 +9,8 @@
 body *{
   box-sizing: border-box;
   outline-color: black;
-  outline-width: 3px
+  outline-width: 3px;
+  line-height: 1.3;
   
 }
 
@@ -21,7 +22,7 @@ div {
   /* border: black 1px solid; */
 }
 
-p, pre {
+p, pre, footer {
   font-family: 'Gothic A1', sans-serif;
 }
 
@@ -43,6 +44,23 @@ h3{
   width: 100%;
   /* padding: 10px; */
 }
+
+footer{
+  background-color: #024555;
+  color: #FFB413;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+
+.signature{
+  position: absolute;
+  /* float: right; */
+  padding: 10px;
+  bottom: 0px;
+  right: 0px;
+}
+
 
 button {
   border: #FFBE13 solid 2px;
@@ -147,10 +165,53 @@ button:focus, button:hover{
   }
 }
 
-.pulsing{
+@keyframes pulsate {
+  from {
+    font-size: 1em;
+    
+    letter-spacing: auto;
+    line-height: 1em;
+  }
+
+  to {
+    font-size: 1.1em;
+    
+    letter-spacing: -1.2px;
+    line-height: .85em;
+  }
+}
+
+@keyframes blue-pulse {
+  from {
+    color: #024555;
+  }
+
+  to {
+    color: #118AA6;
+  }
+}
+
+@keyframes white-pulse {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #FFB413;
+  }
+}
+
+.white-pulsing{
   animation-duration: 1000ms;
   animation-direction: alternate;
-  animation-name: pulsate;
+  animation-name: white-pulse, pulsate;
+  animation-iteration-count: infinite;
+}
+
+.blue-pulsing{
+  animation-duration: 1000ms;
+  animation-direction: alternate;
+  animation-name: blue-pulse, pulsate;
   animation-iteration-count: infinite;
 }
 
@@ -164,25 +225,68 @@ button:focus, button:hover{
   background-color:#118AA6;
 }
 
-.start-extra-info img {
-  width: 50%;
-  margin: auto;
-  position: relative;
-  top:50px;
+.extra-header {
+  color: #FFB413;
+  border: solid #FFB413 2px;
+  background-color: #024555; 
+  padding: 30px;
+  text-align: center;
+  font-size: 2.5em;
 }
 
-.start-info-bar {
+.extra-people-container{
   display: flex;
+  width: 100%;
   flex-flow: column;
-  position: relative;
 }
 
-.start-text-box {
-  background-color:white;
-  font-family: 'Gotich A1', sans-serif;
+.extra-people-container img{
+  width:100%;
+}
+
+.extra-people-text{
+  background-color: white;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height:100%;
+}
+
+.extra-people-container p {
+  max-width: 500px;
+  color: #024555;
+  padding: 20px 10px;
   font-size: 24px;
-  padding: 30px 10px 0px 10px;
-  margin: 0px 10px;
+  margin:0px;
+}
+
+.extra-secret-container{
+  border: solid #FFDB7D 2px;
+  margin: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.extra-secret-container p{
+  font-size: 22px;
+}
+
+.api-name, .my-name{
+  font-family: gothic, sans-serif;
+  font-weight: 800;
+}
+
+.extra-logos{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding:0px 5px;
+}
+
+.extra-logos img{
+  width: 25%;
+  align-self: center;
 }
 
 /* END start screen stuff */
@@ -285,7 +389,7 @@ button:focus, button:hover{
 .perfect-tweet-text-box p{
   color: #024555;
   font-family: gotham;
-  padding: 0px 5px;
+  padding: 0px 10px;
   font-size: 18px; 
 }
 
@@ -481,7 +585,7 @@ button:focus, button:hover{
 }
 
 .twitter-users {
-  padding-top:15px;
+  padding-top:25px;
 }
 
 .twitter-user {
@@ -565,7 +669,7 @@ button:focus, button:hover{
 .twitter-user-tweet p {
   margin:0px;
   padding: 10px;
-  color: #118AA6;
+  color: #024555;
   font-family: gotham, sans-serif;
 }
 
@@ -612,9 +716,72 @@ button:focus, button:hover{
 
 @media only screen and (min-width: 550px){
 
-  /* STILL NEED TO REDO THE START PAGE */
+  .start-extra-info{
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+  }
 
+  .extra-header {
+    max-width: 800px;
+  }
+  
+  .extra-people-container{
+    flex-flow: row;
+    margin:auto;
+    position: relative;
+    background-color: white; 
+  }
+  
+  .extra-people-container img{
+    max-width: 300px;
+    width: 25%;
+    align-self: flex-start;
+    
+  }
 
+  .extra-people-text{
+    align-self: center;
+  }
+  
+  .extra-people-container p {
+    font-size: 22px;
+    min-height: 100%;
+  }
+  
+  .extra-secret-container{
+    max-width: 600px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 30px 0px;
+  }
+  
+  .extra-secret-container p{
+    font-size: 18px;
+  }
+
+  .extra-apis{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .extra-logos{
+    flex-flow: row wrap;
+    width:30%;
+  }
+  
+  .extra-logos img{
+    width: 50%;
+    align-self: center;
+  }
+
+  .extra-apis p {
+    width: fit-content;
+    font-size: 24px;
+    padding: 20px;
+
+  }
 
   .squished .top-bar {
     display: flex;
