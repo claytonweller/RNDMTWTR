@@ -18,10 +18,6 @@ body{
   background-color: #118AA6;
 }
 
-div {
-  /* border: black 1px solid; */
-}
-
 p, pre, footer {
   font-family: 'Gothic A1', sans-serif;
 }
@@ -42,7 +38,6 @@ h3{
 
 .app-container{
   width: 100%;
-  /* padding: 10px; */
 }
 
 footer{
@@ -55,7 +50,6 @@ footer{
 
 .signature{
   position: absolute;
-  /* float: right; */
   padding: 10px;
   bottom: 0px;
   right: 0px;
@@ -83,7 +77,6 @@ button:focus, button:hover{
 
 .start-above-the-fold{
   background-color: #6BC0D4;
-  /* height: 100vh; */
   min-height: 680px;
   display:flex;
   flex-flow: column;
@@ -169,14 +162,14 @@ button:focus, button:hover{
   from {
     font-size: 1em;
     
-    letter-spacing: auto;
+    /* letter-spacing: auto; */
     line-height: 1em;
   }
 
   to {
     font-size: 1.1em;
     
-    letter-spacing: -1.2px;
+    /* letter-spacing: -1.2px; */
     line-height: .85em;
   }
 }
@@ -217,7 +210,6 @@ button:focus, button:hover{
 
 .disclosure{
   font-style: italic;
-  /* color: #FFB413; */
   font-size: 12px;
 }
 
@@ -304,7 +296,6 @@ button:focus, button:hover{
 }
 
 .top-bar img{
-  /* max-width:30%; */
   width:auto;
   max-height: 85%;
   padding-top: 5px;
@@ -438,7 +429,6 @@ button:focus, button:hover{
   align-self: center;
   font-size: 30px;
   padding: 10px 0px;
-  /* margin:  0px 30px; */
 }
 
 .squish-button-container {
@@ -856,7 +846,6 @@ button:focus, button:hover{
 
   #tweet-button, #reperfect-button{
     margin:0px; 
-    /* position: absolute;  */
     width: fit-content;
     padding:10px;
     height: width;

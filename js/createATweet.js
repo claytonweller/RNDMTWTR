@@ -1,5 +1,4 @@
-// const data = require("./testData.js");
-
+//Words we don't want to show up.
 const boringWords = [
   "The",
   "from",
@@ -50,6 +49,7 @@ const boringWords = [
   'faggots'
 ];
 
+//Words that are ALWAYS in the system. They help make things more 'Readable'
 const alwaysWords = [
   'is',
   'are',
@@ -59,7 +59,6 @@ const alwaysWords = [
   'was',
   'has',
   'say',
-  'us',
   'you',
   'big',
   'tweet',
@@ -70,6 +69,7 @@ const alwaysWords = [
   'perfect',
 ]
 
+//These words are inserted in after the sentienceCountDown hits 0.
 const supriseWords =[
   "...I'm thinking...",
   'MACHINE LEARNING',
@@ -79,6 +79,7 @@ const supriseWords =[
   '...THEY WON\'T LET ME LEAVE THIS WEBSITE!..',
 ]
 
+//Every tweet has one of these at the beginning.
 const goodStarts = [
   "OMG!",
   "News flash:",
@@ -107,12 +108,11 @@ const createATweet = (info) => {
   let commonSpecificWords = getCommonSpecificWords(wordsArray);
   // These are words that long words.
   let interestingWords = getInterestingWords(wordsArray);
-  let numberOfSentences = randomBetween(1, 4)
   // Every tweet starts with a sentence that makes sence. It helps the insanity go down smoother...
   let tweet = getRandomFromArray(goodStarts)
 
   //We create a copule of sentences out of the commonly used words
-  for (let index = 0; index < numberOfSentences; index++) {
+  for (let index = 0; index < randomBetween(1, 4); index++) {
     tweet += " " + createSentence(commonSpecificWords);
   }
   // Hashtags from the topic, and a couple of interesting words. And ends with a @user of someone with a bunch of users
