@@ -15,7 +15,7 @@ STATE = {
   //This is an easter egg for anyone who presses the Re-Perfect button a bunch.
   //After this gets to 0 the tweets start having words about how the Twitter bot is 'Becoming selfe aware'.
   sentienceCountDown: 6,
-};
+}
 
 
 //This checks if all of the text apis have returned usable content. After which it creates a 'Perfect Tweet'
@@ -26,7 +26,7 @@ const allCallsDone = (source) => {
     populatePerfectTweet()
     console.log(STATE)
   }
-};
+}
 
 const listenForReperfectClick = () => {
   $('#reperfect-button').click(function (event) {
@@ -90,34 +90,34 @@ const listenForChosenGifClick = () => {
 //This happens when someone clicks the go button on the start page. It sends out API calls, and then pulls all the data into the app.
 const listenForSearchButtonClick = () => {
   $(".start-screen").on("click", "button", function (event) {
-    event.preventDefault();
-    searchButtonClick(this);
-  });
-};
+    event.preventDefault()
+    searchButtonClick(this)
+  })
+}
 
 const searchButtonClick = () => {
 
-  let topicField = $(".start-screen").find("input");
-  STATE.topic = $(topicField).val();
+  let topicField = $(".start-screen").find("input")
+  STATE.topic = $(topicField).val()
   if (!STATE.topic) {
-    STATE.topic = "NOTHING";
+    STATE.topic = "NOTHING"
   }
-  $(topicField).val("");
-  switchToPerfectTweetScreen();
+  $(topicField).val("")
+  switchToPerfectTweetScreen()
   window.scrollTo(0, 0)
-  makeAPIcalls(STATE.topic);
-};
+  makeAPIcalls(STATE.topic)
+}
 const switchToPerfectTweetScreen = () => {
-  $(".start-screen").attr("hidden", true);
-  $(".perfect-tweet-screen").attr("hidden", false);
-};
+  $(".start-screen").attr("hidden", true)
+  $(".perfect-tweet-screen").attr("hidden", false)
+}
 
 const makeAPIcalls = topic => {
-  getGiphyFromSearch(topic);
-  getNewsFromSearch(topic);
-  getWikiFromSearch(topic);
-  getTwitterFromSearch(topic);
-};
+  getGiphyFromSearch(topic)
+  getNewsFromSearch(topic)
+  getWikiFromSearch(topic)
+  getTwitterFromSearch(topic)
+}
 
 //SEARCH ===> END
 
@@ -126,20 +126,20 @@ const makeAPIcalls = topic => {
 //This is when a user wants to return to the start page and change topics. The STATE is completely wiped.
 const listenForRestartButtonClick = () => {
   $("#start-over-button").click(function (event) {
-    restartButtonClick();
-  });
-};
+    restartButtonClick()
+  })
+}
 
 const restartButtonClick = () => {
-  resetInfo();
-  switchToStartScreen();
+  resetInfo()
+  switchToStartScreen()
   $('.form-container').find('input').focus()
-};
+}
 
 const switchToStartScreen = () => {
-  $(".start-screen").attr("hidden", false);
-  $(".perfect-tweet-screen").attr("hidden", true);
-};
+  $(".start-screen").attr("hidden", false)
+  $(".perfect-tweet-screen").attr("hidden", true)
+}
 
 const resetInfo = () => {
   STATE = {
@@ -153,14 +153,14 @@ const resetInfo = () => {
     giphy: [],
     currentGifIndex: 0,
     sentienceCountDown: 10
-  };
+  }
   $('.perfect-tweet-container').find('img').attr('src', './assets/images/Loading.gif')
   $('.perfect-tweet-container').find('img').attr('alt', 'placeholder')
   $('.perfect-tweet-text-box').find('p').html('<span class="blue-pulsing">Creating Tweet...</span>')
   populateTwitter()
   populateWiki()
   populateNews()
-};
+}
 
 // RESET ===> END
 
@@ -172,8 +172,8 @@ const wakeUpHerokuServer = () => {
     mode: "cors"
   })
     // .then(res => res.json())
-    .then(text => console.log("Poking the bear -> ", text));
-};
+    .then(text => console.log("Poking the bear -> ", text))
+}
 
 //This function opens a new tab/window with a prepopulated tweet.
 const listenForTweetButtonClick = () => {
@@ -232,18 +232,18 @@ const listenForMoreWikiClick = () => {
 ///This function is used by a couple of the API calls to make sure they work with ridiculously long strings
 
 const truncateLongSearchString = string => {
-  let smallTopicArray = string.split(" ");
+  let smallTopicArray = string.split(" ")
   if (smallTopicArray.length > 1) {
-    return smallTopicArray.sort((a, b) => b.length - a.length)[0];
+    return smallTopicArray.sort((a, b) => b.length - a.length)[0]
   } else {
-    return string;
+    return string
   }
-};
+}
 
 //these are useful functions that come up in multiple places
-const randomBetween = (from, to) => Math.floor(Math.random() * (to - from + 1)) + from;
-const getRandomFromArray = array => array[randomBetween(0, array.length - 1)];
-const getRandomIndex = array => Math.floor(Math.random() * array.length);
+const randomBetween = (from, to) => Math.floor(Math.random() * (to - from + 1)) + from
+const getRandomFromArray = array => array[randomBetween(0, array.length - 1)]
+const getRandomIndex = array => Math.floor(Math.random() * array.length)
 
 const handlePerfectTweetApp = () => {
   $('.form-container').find('input').focus()
@@ -259,6 +259,6 @@ const handlePerfectTweetApp = () => {
   listenForScroll()
   listenForMoreWikiClick()
 
-};
+}
 
-$(handlePerfectTweetApp);
+$(handlePerfectTweetApp)

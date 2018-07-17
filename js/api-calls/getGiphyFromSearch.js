@@ -1,5 +1,5 @@
-const GIF_SEARCH_URL = "https://api.giphy.com/v1/gifs/search";
-const GIPHY_API_KEY = "lkdzgGGUC5PbHv3W33MJbdvhSMA1u4Qc";
+const GIF_SEARCH_URL = "https://api.giphy.com/v1/gifs/search"
+const GIPHY_API_KEY = "lkdzgGGUC5PbHv3W33MJbdvhSMA1u4Qc"
 
 // This is the call to the Giphy API. It's a simple GET request. Ang it returns an array of objects
 
@@ -8,15 +8,15 @@ getGiphyFromSearch = (search) => {
     q: search,
     api_key: GIPHY_API_KEY,
     limit: 4
-  };
-  $.getJSON(GIF_SEARCH_URL, query, populateGiphy);
+  }
+  $.getJSON(GIF_SEARCH_URL, query, populateGiphy)
 }
 
 const populateGiphy = results => {
   if (typeof results.data[0] === 'object') {
-    STATE.giphy = results.data;
-    let output = results.data.map(renderGiphyObject);
-    $(".giphy-gifs").html(output);
+    STATE.giphy = results.data
+    let output = results.data.map(renderGiphyObject)
+    $(".giphy-gifs").html(output)
   } else {
     getGiphyFromSearch('tweet')
   }
@@ -27,4 +27,4 @@ const populateGiphy = results => {
 const renderGiphyObject = item => `
     <button class="gif-block">
         <img src="${item.images.original.url}" alt="${item.title}" />
-    </button>`;
+    </button>`

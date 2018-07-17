@@ -1,4 +1,4 @@
-const WIKI_SEARCH_URL = 'https://en.wikipedia.org/w/api.php?origin=*&';
+const WIKI_SEARCH_URL = 'https://en.wikipedia.org/w/api.php?origin=*&'
 
 //Here we use Two of Wikipedias searches to compare and pick an article for the perfect tweet.
 //First we use open search, which returns a list of wikipedia articles which apply to the topic. (But not any text.)
@@ -12,7 +12,7 @@ function getWikiFromSearch(searchTerm) {
     namespace: 0,
     format: 'json',
   }
-  $.getJSON(WIKI_SEARCH_URL, query, searchForTitles);
+  $.getJSON(WIKI_SEARCH_URL, query, searchForTitles)
 }
 
 // For each of the 3 titles that we return, we dump these into a search 
@@ -37,7 +37,7 @@ const getWikiFromTitle = (title) => {
     titles: title,
     format: 'json',
   }
-  $.getJSON(WIKI_SEARCH_URL, query, storeWikiObject);
+  $.getJSON(WIKI_SEARCH_URL, query, storeWikiObject)
 }
 
 //As each one comes back we compare it to the previous ones. And store the longest one in the STATE.
@@ -51,7 +51,7 @@ const storeWikiObject = (results) => {
     STATE.wiki.title = results.query.pages[pageId].title
     STATE.wiki.extract = results.query.pages[pageId].extract
     populateWiki()
-    allCallsDone('wiki');
+    allCallsDone('wiki')
   }
 }
 
@@ -74,9 +74,9 @@ const deadEndText = [
 //We then populate the HTML!
 
 const populateWiki = () => {
-  $(".wiki-title").find("h1").html(STATE.wiki.title);
-  $(".wiki-text").find("p").html(STATE.wiki.extract);
-};
+  $(".wiki-title").find("h1").html(STATE.wiki.title)
+  $(".wiki-text").find("p").html(STATE.wiki.extract)
+}
 
 
 
