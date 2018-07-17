@@ -2,6 +2,8 @@ const EVERYTHING_SEARCH_URL = "https://newsapi.org/v2/everything";
 const GOOD_SEARCH_URL = "https://newsapi.org/v2/top-headlines";
 const NEWS_API_KEY = "d57b057c68454414bd4d1d8aa9986a98";
 
+//These are the AJAX calls for the NewsAPI.
+
 const getNewsFromSearch = search => {
   const query = {
     q: truncateLongSearchString(search),
@@ -9,30 +11,41 @@ const getNewsFromSearch = search => {
     pageSize: 3,
     sortBy: "popularity"
   };
-  getEverythingFromSearch(query);
-  getGoodNewsFromSearch(query);
+  getGoodNewsFromSearch(query)
 };
 
+//First it looks for 'Good' Articles on the topic. These are onese for reputable news sources like The NY Times.
+
 const getGoodNewsFromSearch = (query) => {
-  query.country = "us";
+  query.country = "us"
   $.getJSON(GOOD_SEARCH_URL, query, results => {
-    STATE.news.good = results.articles;
-    populateNews();
+    STATE.news = results.articles;
+    if(typeof STATE.news[0] === 'object'){
+      populateNews()
+      allCallsDone('News')
+    } else {
+      delete query.country
+      getEverythingFromSearch(query);
+    }
   });
 }
+
+//Then if there are no 'Good' returns it goes to the more general 'everything search. 
+// Which in the craziest situation will return deviant art pages.
 
 const getEverythingFromSearch = (query) => {
-  query.language = "en";
+  query.language = "en"
   $.getJSON(EVERYTHING_SEARCH_URL, query, results => {
-    STATE.news.everything = results.articles;
-    populateNews();
-    allCallsDone('News');
+    STATE.news = results.articles
+    populateNews()
+    allCallsDone('News')
   });
 }
 
+//Once we've got some objects in the STATE we can populate some articles.
+
 const populateNews = () => {
-  var allNews = [...STATE.news.good, ...STATE.news.everything];
-  var renderedNews = allNews.map(item => createSingleNewsArticle(item));
+  var renderedNews = STATE.news.map(item => createSingleNewsArticle(item));
   $(".all-articles").html(renderedNews);
   $(".js-topic").html(STATE.topic);
 };

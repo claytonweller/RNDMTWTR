@@ -1,5 +1,9 @@
 const TWITTER_SEARCH_URL = "https://thawing-escarpment-24112.herokuapp.com/";
 
+//Twitter does not allow client side API calls to their search API.
+// So I set up a heroku server. Here is a link to the server code:
+// https://github.com/claytonweller/p-tweet-server
+
 const getTwitterFromSearch = (search) => {
 
   fetch(TWITTER_SEARCH_URL, {
@@ -18,10 +22,6 @@ const getTwitterFromSearch = (search) => {
     });
 }
 
-const populateTwitter = () => {
-  $(".twitter-users").html(createAllTwitterUsers());
-};
-
 const storeTwitterObject = results => {
   STATE.twitter = results.statuses.map(item => {
     return {
@@ -32,6 +32,12 @@ const storeTwitterObject = results => {
     };
   });
 };
+
+const populateTwitter = () => {
+  $(".twitter-users").html(createAllTwitterUsers());
+};
+
+// We only populate the first 3 twitter users... but we keep more in the store to create a better 'perfect tweet'
 
 const createAllTwitterUsers = () => {
   let twitterHtml = "";

@@ -1,22 +1,27 @@
 STATE = {
+  //This stores the current topic selected by the user
   topic: "",
+  // These store all of the API info which populates the app
   wiki: {
     title: "",
     extract: ""
   },
-  giphy: [], //may not need to keep this in the store
-  news: {
-    good: [],
-    everything: []
-  },
+  giphy: [],
+  news: [],
   twitter: [],
+
+  //This is which of the 4 gifs is currently the selected gif for the 'Perfect Tweet'
   currentGifIndex:0,
-  sentienceCountDown:5,
+  //This is an easter egg for anyone who presses the Re-Perfect button a bunch.
+  //After this gets to 0 the tweets start having words about how the Twitter bot is 'Becoming selfe aware'.
+  sentienceCountDown:6,
 };
 
+
+//This checks if all of the text apis have returned usable content. After which it creates a 'Perfect Tweet'
 const allCallsDone = (source) => {
   if (source, STATE.wiki.extract !== '' && typeof STATE.twitter[0] === 'object' && typeof 
-  STATE.news.everything[0] === 'object') {
+  STATE.news[0] === 'object') {
     toggleGifSelection()
     populatePerfectTweet()
     console.log(STATE)
@@ -39,12 +44,14 @@ const populatePerfectTweet = () =>{
 // All of these functions are about making the different gifs selectable. Either randomly or directly
 
 const selectGif = (index) =>{
+  //This first toggle turns off whatever gif is currently selected
   toggleGifSelection()
   if(index === 'random'){
     switchToRandomGifIndex(STATE.currentGifIndex)
   } else {
     STATE.currentGifIndex = index % 4
   }
+  //This toggles the new gif on
   toggleGifSelection()
   $('.perfect-tweet-container').find('img').attr('src', STATE.giphy[STATE.currentGifIndex].images.original.url)
   $('.perfect-tweet-container').find('img').attr('alt', STATE.giphy[STATE.currentGifIndex].title)
@@ -62,12 +69,14 @@ const toggleGifSelection = () =>{
   $($('.giphy-gifs').find('.gif-block')[STATE.currentGifIndex]).toggleClass('selected-gif')
 }
 
+//This listens for clicks on the array of 4 gifs displayed below the fold on the app.
 const listenForGifClick = () =>{
   $('.giphy-gifs').on('click', '.gif-block', function(){
     selectGif($(this).index())
   })
 }
 
+//This listens for clicks on the gif associated with the 'Perfect Tweet'
 const listenForChosenGifClick = () =>{
   $('.perfect-tweet-container').on('click', 'img', function(){
     selectGif(STATE.currentGifIndex + 1)
@@ -95,6 +104,7 @@ const searchButtonClick = () => {
   }
   $(topicField).val("");
   switchToPerfectTweetScreen();
+  window.scrollTo(0,0)
   makeAPIcalls(STATE.topic);
 };
 const switchToPerfectTweetScreen = () => {
@@ -113,7 +123,7 @@ const makeAPIcalls = topic => {
 
 
 // RESET ====> START
-//This is when a user wants to return to the start page and change topics.
+//This is when a user wants to return to the start page and change topics. The STATE is completely wiped.
 const listenForRestartButtonClick = () => {
   $("#start-over-button").click(function(event) {
     restartButtonClick();
@@ -138,12 +148,9 @@ const resetInfo = () => {
       title: "",
       extract: ""
     },
-    // giphy: [], //may not need to keep this in the store
-    news: {
-      good: [],
-      everything: []
-    },
+    news:[],
     twitter: [],
+    giphy: [],
     currentGifIndex:0,
     sentienceCountDown:10   
   };
@@ -157,7 +164,8 @@ const resetInfo = () => {
 
   // RESET ===> END
 
-// The twitter call has to come from a server. I set it up on Heroku, which sleeps after an hour of inactivity. So this is call right when the page loads so it has as long as possible to spin up before the first call
+// The twitter call has to come from a server. I set it up on Heroku, which sleeps after an 30min of inactivity. 
+// So this is call right when the page loads so it has as long as possible to spin up before the user actually need something from twitter
 const wakeUpHerokuServer = () => {
   fetch(TWITTER_SEARCH_URL + "wakeUp/", {
     method: "get",
@@ -235,6 +243,7 @@ const truncateLongSearchString = string => {
 //these are useful functions that come up in multiple places
 const randomBetween = (from, to) => Math.floor(Math.random() * (to - from + 1)) + from;
 const getRandomFromArray = array => array[randomBetween(0, array.length - 1)];
+const getRandomIndex = array => Math.floor(Math.random() * array.length);
 
 const handlePerfectTweetApp = () => {
   $('.form-container').find('input').focus()

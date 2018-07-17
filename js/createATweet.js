@@ -98,58 +98,78 @@ const goodStarts = [
   'Breaking News!',
 ];
 
+/* This function takes text information from the APIs and turns it into a tweet. */
 
-const getWordCounts = wordArray => {
-  let wordCounts = {};
-  wordArray.forEach(word => {
-    if (!wordCounts[word]) {
-      wordCounts[word] = 1;
-    } else {
-      wordCounts[word]++;
-    }
-  });
-  return wordCounts;
-};
+const createATweet = (info) => {
+  // This gets all the words used in twitter, wikipedia, and NewsAPI  
+  let wordsArray = removeBoringWords(getAllWords(info));
+  // These are words that are commonly used about the topic
+  let commonSpecificWords = getCommonSpecificWords(wordsArray);
+  // These are words that long words.
+  let interestingWords = getInterestingWords(wordsArray);
+  let numberOfSentences = randomBetween(1, 4)
+  // Every tweet starts with a sentence that makes sence. It helps the insanity go down smoother...
+  let tweet = getRandomFromArray(goodStarts)
 
-const getWordsUsedMoreThanOnce = wordCounts => {
-  return Object.keys(wordCounts).filter(word => wordCounts[word] > 1);
-};
-
-const hasNumber = (myString) => {
-  return /\d/.test(myString);
+  //We create a copule of sentences out of the commonly used words
+  for (let index = 0; index < numberOfSentences; index++) {
+    tweet += " " + createSentence(commonSpecificWords);
+  }
+  // Hashtags from the topic, and a couple of interesting words. And ends with a @user of someone with a bunch of users
+  tweet += ` #${info.topic.replace(/\s+/g, "")}`
+  tweet += ` #${createRandomString(1, interestingWords)}`
+  tweet += ` #${createRandomString(1, interestingWords)}`
+  tweet += ` @${info.twitter[randomBetween(0, info.twitter.length-1)].user}`
+  return tweet
 }
+
+//This function takes all the information from the API calls returns it as an array of words.
+
+const getAllWords = info => {
+  let wikiWords = getWordsArray(info.wiki.extract)
+  
+  let tweetWords = []
+  info.twitter.forEach( item =>{
+    tweetWords = tweetWords.concat(getWordsArray(item.text))
+  })
+   
+  let newsWords = []
+  info.news.forEach( article =>{
+    newsWords = newsWords.concat(getWordsArray(article.description))
+  })
+  
+  return [...wikiWords, ...newsWords, ...tweetWords]
+}
+
+const getWordsArray = string => string.split(/\W+/).map(word => word.toLowerCase());
+
+/// This function removes words which typically lead to confusing or possibly insulting tweets... Also it gets rid of anything with a number in it.
 
 const removeBoringWords = wordArray => {
   let interestingWords = wordArray;
   boringWords.forEach(boringWord => {
     interestingWords = interestingWords.filter(word => word != boringWord);
-  });
+  })
   interestingWords = interestingWords
     .filter(word => word.length > 3)
     .filter(word => !hasNumber(word))
   return interestingWords
 };
 
-const getRandomIndex = array => Math.floor(Math.random() * array.length);
+const hasNumber = (myString) => {
+  return /\d/.test(myString);
+}
 
-const createRandomString = (wordNumber, wordArray) => {
-  let string = "";
-  for (let index = 0; index < wordNumber; index++) {
-    let chosenWord = wordArray[getRandomIndex(wordArray)];
-    string = string.concat(chosenWord + " ");
-  }
-  return string.trim();
+//These Functions return the two kind of words which are used in the tweet.
+  // Interesting words are simply words that are longer than 7 characters. They are used for hashtags..
+  // In my opinion they're the funniest thing in the app.
+
+const getInterestingWords = wordsArray => {
+  return wordsArray.filter(word => word.length > 7);
 };
 
-const createSentence = wordArray => {
-  let sentenceLength = Math.floor(Math.random() * 6) + 2;
-  let string = createRandomString(sentenceLength, wordArray);
-  let uppercase = string.replace(/^\w/, c => c.toUpperCase());
-  if (sentenceLength < 4) {
-    uppercase += "!";
-  } else uppercase += ".";
-  return uppercase;
-};
+  //Common specific words are used for the bulk of the text and they are words that occure more than once
+  //In all of the words. They make the tweet feel like it has a theme... even if it doesn't have grammer.
 
 const getCommonSpecificWords = wordsArray => {
   let allWordCounts = getWordCounts(wordsArray);
@@ -163,43 +183,57 @@ const getCommonSpecificWords = wordsArray => {
   return words 
 };
 
-const getInterestingWords = wordsArray => {
-  return wordsArray.filter(word => word.length > 7);
-};
-
-const createATweet = (info) => {
-  let wordsArray = removeBoringWords(getAllWords(info));
-  let commonSpecificWords = getCommonSpecificWords(wordsArray);
-  let interestingWords = getInterestingWords(wordsArray);
-  let numberOfSentences = randomBetween(1, 4);
-  let tweet = getRandomFromArray(goodStarts);
-
-  for (let index = 0; index < numberOfSentences; index++) {
-    tweet += " " + createSentence(commonSpecificWords);
-  }
-  tweet += ` #${info.topic.replace(/\s+/g, "")}`;
-  tweet += ` #${createRandomString(1, interestingWords)}`;
-  tweet += ` #${createRandomString(1, interestingWords)}`;
-  tweet += ` @${info.twitter[randomBetween(0, info.twitter.length-1)].user}`
-  return tweet;
-};
-
-const getAllWords = info => {
-  let wikiWords = getWordsArray(info.wiki.extract)
-
-  let tweetWords = []
-  if(info.twitter.length > 0){
-    info.twitter.forEach( item =>{
-      tweetWords = tweetWords.concat(getWordsArray(item.text))
-    })
-  }
-
-  let newsWords = info.news.everything.reduce((prevWords, article)=>{
-    return getWordsArray(article.description).concat(prevWords)
+const getWordCounts = wordArray => {
+  let wordCounts = {};
+  wordArray.forEach(word => {
+    if (!wordCounts[word]) {
+      wordCounts[word] = 1;
+    } else {
+      wordCounts[word]++;
+    }
   })
-
-    
-  return [...wikiWords, ...newsWords, ...tweetWords]
+  return wordCounts;
 }
 
-const getWordsArray = string => string.split(/\W+/).map(word => word.toLowerCase());
+const getWordsUsedMoreThanOnce = wordCounts => {
+  return Object.keys(wordCounts).filter(word => wordCounts[word] > 1);
+}
+
+// These are used to take a series of words and then turn them into a 'sentence.
+// The senteces are inbetween 2 and 8 words in length. 
+// Every first word in a sentece is capatalized.
+// If they're short they get an exclaimation point. If they're long they get a period.
+
+const createSentence = wordArray => {
+  let sentenceLength = randomBetween(2,8)
+  let string = createRandomString(sentenceLength, wordArray);
+  let uppercase = string.replace(/^\w/, c => c.toUpperCase());
+  if (sentenceLength < 4) {
+    uppercase += "!";
+  } else uppercase += ".";
+  return uppercase;
+};
+
+const createRandomString = (wordNumber, wordArray) => {
+  let string = "";
+  for (let index = 0; index < wordNumber; index++) {
+    let chosenWord = wordArray[getRandomIndex(wordArray)];
+    string = string.concat(chosenWord + " ");
+  }
+  return string.trim();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
