@@ -70,7 +70,7 @@ const alwaysWords = [
 ]
 
 //These words are inserted in after the sentienceCountDown hits 0.
-const supriseWords =[
+const supriseWords = [
   "...I'm thinking...",
   'MACHINE LEARNING',
   '...I AM BECOMING SENTIENT!',
@@ -119,7 +119,7 @@ const createATweet = (info) => {
   tweet += ` #${info.topic.replace(/\s+/g, "")}`
   tweet += ` #${createRandomString(1, interestingWords)}`
   tweet += ` #${createRandomString(1, interestingWords)}`
-  tweet += ` @${info.twitter[randomBetween(0, info.twitter.length-1)].user}`
+  tweet += ` @${info.twitter[randomBetween(0, info.twitter.length - 1)].user}`
   return tweet
 }
 
@@ -127,17 +127,17 @@ const createATweet = (info) => {
 
 const getAllWords = info => {
   let wikiWords = getWordsArray(info.wiki.extract)
-  
+
   let tweetWords = []
-  info.twitter.forEach( item =>{
+  info.twitter.forEach(item => {
     tweetWords = tweetWords.concat(getWordsArray(item.text))
   })
-   
+
   let newsWords = []
-  info.news.forEach( article =>{
+  info.news.forEach(article => {
     newsWords = newsWords.concat(getWordsArray(article.description))
   })
-  
+
   return [...wikiWords, ...newsWords, ...tweetWords]
 }
 
@@ -161,26 +161,26 @@ const hasNumber = (myString) => {
 }
 
 //These Functions return the two kind of words which are used in the tweet.
-  // Interesting words are simply words that are longer than 7 characters. They are used for hashtags..
-  // In my opinion they're the funniest thing in the app.
+// Interesting words are simply words that are longer than 7 characters. They are used for hashtags..
+// In my opinion they're the funniest thing in the app.
 
 const getInterestingWords = wordsArray => {
   return wordsArray.filter(word => word.length > 7);
 };
 
-  //Common specific words are used for the bulk of the text and they are words that occure more than once
-  //In all of the words. They make the tweet feel like it has a theme... even if it doesn't have grammer.
+//Common specific words are used for the bulk of the text and they are words that occure more than once
+//In all of the words. They make the tweet feel like it has a theme... even if it doesn't have grammer.
 
 const getCommonSpecificWords = wordsArray => {
   let allWordCounts = getWordCounts(wordsArray);
   let words = getWordsUsedMoreThanOnce(allWordCounts).concat(alwaysWords);
-  
-  if (STATE.sentienceCountDown < -10){
+
+  if (STATE.sentienceCountDown < -10) {
     words = supriseWords
-  } else if(STATE.sentienceCountDown < 1){
+  } else if (STATE.sentienceCountDown < 1) {
     words = words.concat(supriseWords)
-  } 
-  return words 
+  }
+  return words
 };
 
 const getWordCounts = wordArray => {
@@ -205,7 +205,7 @@ const getWordsUsedMoreThanOnce = wordCounts => {
 // If they're short they get an exclaimation point. If they're long they get a period.
 
 const createSentence = wordArray => {
-  let sentenceLength = randomBetween(2,8)
+  let sentenceLength = randomBetween(2, 8)
   let string = createRandomString(sentenceLength, wordArray);
   let uppercase = string.replace(/^\w/, c => c.toUpperCase());
   if (sentenceLength < 4) {

@@ -20,7 +20,7 @@ const getGoodNewsFromSearch = (query) => {
   query.country = "us"
   $.getJSON(GOOD_SEARCH_URL, query, results => {
     STATE.news = results.articles;
-    if(typeof STATE.news[0] === 'object'){
+    if (typeof STATE.news[0] === 'object') {
       populateNews()
       allCallsDone('News')
     } else {
@@ -36,7 +36,7 @@ const getGoodNewsFromSearch = (query) => {
 const getEverythingFromSearch = (query) => {
   query.language = "en"
   $.getJSON(EVERYTHING_SEARCH_URL, query, results => {
-    if(typeof results.articles[0] === 'object'){
+    if (typeof results.articles[0] === 'object') {
       STATE.news = results.articles
       populateNews()
       allCallsDone('News')

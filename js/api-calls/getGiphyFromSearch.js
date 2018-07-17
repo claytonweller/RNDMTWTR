@@ -13,14 +13,14 @@ getGiphyFromSearch = (search) => {
 }
 
 const populateGiphy = results => {
-  if(typeof results.data[0] === 'object'){
+  if (typeof results.data[0] === 'object') {
     STATE.giphy = results.data;
     let output = results.data.map(renderGiphyObject);
     $(".giphy-gifs").html(output);
   } else {
     getGiphyFromSearch('tweet')
   }
-  
+
 }
 
 // We always render all 4 of the images in the app.

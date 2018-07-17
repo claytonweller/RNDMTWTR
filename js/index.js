@@ -11,30 +11,30 @@ STATE = {
   twitter: [],
 
   //This is which of the 4 gifs is currently the selected gif for the 'Perfect Tweet'
-  currentGifIndex:0,
+  currentGifIndex: 0,
   //This is an easter egg for anyone who presses the Re-Perfect button a bunch.
   //After this gets to 0 the tweets start having words about how the Twitter bot is 'Becoming selfe aware'.
-  sentienceCountDown:6,
+  sentienceCountDown: 6,
 };
 
 
 //This checks if all of the text apis have returned usable content. After which it creates a 'Perfect Tweet'
 const allCallsDone = (source) => {
-  if (source, STATE.wiki.extract !== '' && typeof STATE.twitter[0] === 'object' && typeof 
-  STATE.news[0] === 'object') {
+  if (source, STATE.wiki.extract !== '' && typeof STATE.twitter[0] === 'object' && typeof
+    STATE.news[0] === 'object') {
     toggleGifSelection()
     populatePerfectTweet()
     console.log(STATE)
   }
 };
 
-const listenForReperfectClick = ()=>{
-  $('#reperfect-button').click(function(event){
+const listenForReperfectClick = () => {
+  $('#reperfect-button').click(function (event) {
     populatePerfectTweet()
   })
 }
 
-const populatePerfectTweet = () =>{ 
+const populatePerfectTweet = () => {
   selectGif('random')
   STATE.sentienceCountDown -= 1
   $('.perfect-tweet-text-box').find('p').html(createATweet(STATE))
@@ -43,10 +43,10 @@ const populatePerfectTweet = () =>{
 ///GIF Controll ===> START
 // All of these functions are about making the different gifs selectable. Either randomly or directly
 
-const selectGif = (index) =>{
+const selectGif = (index) => {
   //This first toggle turns off whatever gif is currently selected
   toggleGifSelection()
-  if(index === 'random'){
+  if (index === 'random') {
     switchToRandomGifIndex(STATE.currentGifIndex)
   } else {
     STATE.currentGifIndex = index % 4
@@ -57,46 +57,46 @@ const selectGif = (index) =>{
   $('.perfect-tweet-container').find('img').attr('alt', STATE.giphy[STATE.currentGifIndex].title)
 }
 
-const switchToRandomGifIndex = (currentIndex) =>{
+const switchToRandomGifIndex = (currentIndex) => {
   let newIndex = currentIndex
-  while (newIndex === currentIndex){
-    newIndex = randomBetween(0, STATE.giphy.length-1)
+  while (newIndex === currentIndex) {
+    newIndex = randomBetween(0, STATE.giphy.length - 1)
   }
   STATE.currentGifIndex = newIndex
 }
 
-const toggleGifSelection = () =>{
+const toggleGifSelection = () => {
   $($('.giphy-gifs').find('.gif-block')[STATE.currentGifIndex]).toggleClass('selected-gif')
 }
 
 //This listens for clicks on the array of 4 gifs displayed below the fold on the app.
-const listenForGifClick = () =>{
-  $('.giphy-gifs').on('click', '.gif-block', function(){
+const listenForGifClick = () => {
+  $('.giphy-gifs').on('click', '.gif-block', function () {
     selectGif($(this).index())
   })
 }
 
 //This listens for clicks on the gif associated with the 'Perfect Tweet'
-const listenForChosenGifClick = () =>{
-  $('.perfect-tweet-container').on('click', 'img', function(){
+const listenForChosenGifClick = () => {
+  $('.perfect-tweet-container').on('click', 'img', function () {
     selectGif(STATE.currentGifIndex + 1)
   })
 }
 
-  ///GIF Control ===> END
+///GIF Control ===> END
 
 
 ///SEARCH ===> START
 //This happens when someone clicks the go button on the start page. It sends out API calls, and then pulls all the data into the app.
 const listenForSearchButtonClick = () => {
-  $(".start-screen").on("click", "button", function(event) {
+  $(".start-screen").on("click", "button", function (event) {
     event.preventDefault();
     searchButtonClick(this);
   });
 };
 
 const searchButtonClick = () => {
-  
+
   let topicField = $(".start-screen").find("input");
   STATE.topic = $(topicField).val();
   if (!STATE.topic) {
@@ -104,7 +104,7 @@ const searchButtonClick = () => {
   }
   $(topicField).val("");
   switchToPerfectTweetScreen();
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0)
   makeAPIcalls(STATE.topic);
 };
 const switchToPerfectTweetScreen = () => {
@@ -116,16 +116,16 @@ const makeAPIcalls = topic => {
   getGiphyFromSearch(topic);
   getNewsFromSearch(topic);
   getWikiFromSearch(topic);
-  getTwitterFromSearch(topic); 
+  getTwitterFromSearch(topic);
 };
 
-  //SEARCH ===> END
+//SEARCH ===> END
 
 
 // RESET ====> START
 //This is when a user wants to return to the start page and change topics. The STATE is completely wiped.
 const listenForRestartButtonClick = () => {
-  $("#start-over-button").click(function(event) {
+  $("#start-over-button").click(function (event) {
     restartButtonClick();
   });
 };
@@ -148,11 +148,11 @@ const resetInfo = () => {
       title: "",
       extract: ""
     },
-    news:[],
+    news: [],
     twitter: [],
     giphy: [],
-    currentGifIndex:0,
-    sentienceCountDown:10   
+    currentGifIndex: 0,
+    sentienceCountDown: 10
   };
   $('.perfect-tweet-container').find('img').attr('src', './assets/images/Loading.gif')
   $('.perfect-tweet-container').find('img').attr('alt', 'placeholder')
@@ -162,7 +162,7 @@ const resetInfo = () => {
   populateNews()
 };
 
-  // RESET ===> END
+// RESET ===> END
 
 // The twitter call has to come from a server. I set it up on Heroku, which sleeps after an 30min of inactivity. 
 // So this is call right when the page loads so it has as long as possible to spin up before the user actually need something from twitter
@@ -176,8 +176,8 @@ const wakeUpHerokuServer = () => {
 };
 
 //This function opens a new tab/window with a prepopulated tweet.
-const listenForTweetButtonClick = () =>{
-  $('#tweet-button').click(function(){
+const listenForTweetButtonClick = () => {
+  $('#tweet-button').click(function () {
     let tweetText = encodeURIComponent($('.perfect-tweet-text-box').find('p').text())
     let tweetImage = encodeURIComponent(STATE.giphy[STATE.currentGifIndex].bitly_gif_url)
     window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetImage}&via=ThePerfectTwee1`)
@@ -185,13 +185,13 @@ const listenForTweetButtonClick = () =>{
 }
 
 //These functions control the truncating ('squishing') of the perfect tweet bar.
-const listenForSquishClick = ()=>{
+const listenForSquishClick = () => {
   $('#squish-button').click(squishPerfectTweetBar)
 }
 
 const listenForTweetTextClick = () => {
-  $('.perfect-tweet-screen').on('click', 'p', function(){
-    if($('.perfect-tweet-screen').hasClass('squished')){
+  $('.perfect-tweet-screen').on('click', 'p', function () {
+    if ($('.perfect-tweet-screen').hasClass('squished')) {
       squishPerfectTweetBar()
     }
   })
@@ -199,31 +199,31 @@ const listenForTweetTextClick = () => {
 
 const squishPerfectTweetBar = () => {
   $('.perfect-tweet-screen').toggleClass('squished')
-  if(!$('.perfect-tweet-screen').hasClass('squished')){
-    window.scrollTo(0,0)
+  if (!$('.perfect-tweet-screen').hasClass('squished')) {
+    window.scrollTo(0, 0)
   }
 }
 
 const listenForScroll = () => {
   let position = $(window).scrollTop()
-  $(window).scroll(function(){ 
+  $(window).scroll(function () {
     let scroll = $(window).scrollTop()
-    if(scroll > position && scroll > 200 && !$('.perfect-tweet-screen').hasClass('squished')){
+    if (scroll > position && scroll > 200 && !$('.perfect-tweet-screen').hasClass('squished')) {
       squishPerfectTweetBar()
-    } else if (scroll < position && scroll < 220 && scroll> 0 && $('.perfect-tweet-screen').hasClass('squished')) {
+    } else if (scroll < position && scroll < 220 && scroll > 0 && $('.perfect-tweet-screen').hasClass('squished')) {
       squishPerfectTweetBar()
     }
-    position=scroll
+    position = scroll
   })
 }
 
-const listenForMoreWikiClick = ()=>{
-  $('#more-wiki-button').click(function(){
+const listenForMoreWikiClick = () => {
+  $('#more-wiki-button').click(function () {
     let article = $('.info-wiki').find('article')
     $(article).toggleClass('revealed')
-    if($(article).hasClass('revealed')){
+    if ($(article).hasClass('revealed')) {
       $('#more-wiki-button').html('...less...')
-    }else{
+    } else {
       $('#more-wiki-button').html('...more...')
     }
   })
