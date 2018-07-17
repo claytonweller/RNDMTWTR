@@ -19,9 +19,14 @@ function getWikiFromSearch(searchTerm) {
 // which returns a more indepth version of the article.
 
 const searchForTitles = (result) => {
-  result[1].forEach(title => {
-    getWikiFromTitle(title)
-  })
+  if(typeof result[1][0] === 'string'){
+    result[1].forEach(title => {
+      getWikiFromTitle(title)
+    })
+  } else {
+    getWikiFromTitle('Error_message')
+  }
+  
 }
 
 const getWikiFromTitle = (title) => {

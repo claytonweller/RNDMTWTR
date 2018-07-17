@@ -36,9 +36,14 @@ const getGoodNewsFromSearch = (query) => {
 const getEverythingFromSearch = (query) => {
   query.language = "en"
   $.getJSON(EVERYTHING_SEARCH_URL, query, results => {
-    STATE.news = results.articles
-    populateNews()
-    allCallsDone('News')
+    if(typeof results.articles[0] === 'object'){
+      STATE.news = results.articles
+      populateNews()
+      allCallsDone('News')
+    } else {
+      getNewsFromSearch('perfect')
+    }
+
   });
 }
 
