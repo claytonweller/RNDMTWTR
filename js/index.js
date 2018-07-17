@@ -125,9 +125,8 @@ const makeAPIcalls = topic => {
 // RESET ====> START
 //This is when a user wants to return to the start page and change topics. The STATE is completely wiped.
 const listenForRestartButtonClick = () => {
-  $("#start-over-button").click(function (event) {
-    restartButtonClick()
-  })
+  $('.top-bar').find('img').click(function (){restartButtonClick()})
+  $("#start-over-button").click(function () {restartButtonClick()})
 }
 
 const restartButtonClick = () => {

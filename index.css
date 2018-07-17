@@ -134,7 +134,6 @@ button:focus, button:hover{
 .description-container {
   color:#024555;
   padding: 5px 40px;
-  width: 90%;
 }
 
 .description-container p {
@@ -154,22 +153,6 @@ button:focus, button:hover{
     font-size: 1.1em;
     color:#118AA6;
     letter-spacing: -1.2px;
-    line-height: .85em;
-  }
-}
-
-@keyframes pulsate {
-  from {
-    font-size: 1em;
-    
-    /* letter-spacing: auto; */
-    line-height: 1em;
-  }
-
-  to {
-    font-size: 1.1em;
-    
-    /* letter-spacing: -1.2px; */
     line-height: .85em;
   }
 }
@@ -197,14 +180,14 @@ button:focus, button:hover{
 .white-pulsing{
   animation-duration: 1000ms;
   animation-direction: alternate;
-  animation-name: white-pulse, pulsate;
+  animation-name: white-pulse;
   animation-iteration-count: infinite;
 }
 
 .blue-pulsing{
   animation-duration: 1000ms;
   animation-direction: alternate;
-  animation-name: blue-pulse, pulsate;
+  animation-name: blue-pulse;
   animation-iteration-count: infinite;
 }
 
@@ -218,9 +201,8 @@ button:focus, button:hover{
 }
 
 .extra-header {
-  color: #FFB413;
-  border: solid #FFB413 2px;
-  background-color: #024555; 
+  color: white;
+  border: solid #FFDB7D 2px; 
   padding: 30px;
   text-align: center;
   font-size: 2.5em;
@@ -300,6 +282,10 @@ button:focus, button:hover{
   max-height: 85%;
   padding-top: 5px;
   padding-right:10px;
+}
+
+.top-bar img:hover{
+  cursor: pointer;
 }
 
 .top-bar button {
@@ -429,6 +415,7 @@ button:focus, button:hover{
   align-self: center;
   font-size: 30px;
   padding: 10px 0px;
+
 }
 
 .squish-button-container {
@@ -706,7 +693,7 @@ button:focus, button:hover{
 
 
 @media only screen and (min-width: 550px){
-
+  /* BEGIN - Start screen */
   .start-extra-info{
     display:flex;
     flex-flow: column;
@@ -715,6 +702,8 @@ button:focus, button:hover{
 
   .extra-header {
     max-width: 800px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   
   .extra-people-container{
@@ -736,8 +725,10 @@ button:focus, button:hover{
   }
   
   .extra-people-container p {
-    font-size: 22px;
+    font-size: 14px;
     min-height: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
   
   .extra-secret-container{
@@ -745,7 +736,7 @@ button:focus, button:hover{
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin: 30px 0px;
+    margin: 50px 10px;
     padding: 30px 50px;
   }
   
@@ -775,6 +766,8 @@ button:focus, button:hover{
 
   }
 
+  /* BEGIN - perfect tweet page */
+
   .squished .top-bar {
     display: flex;
   }
@@ -784,7 +777,6 @@ button:focus, button:hover{
     flex-flow: row;
   }
 
- 
 
   .squished .perfect-tweet-container{
     margin: 5px 0px;
@@ -816,7 +808,7 @@ button:focus, button:hover{
   }
 
   .perfect-tweet-container{
-    max-width: 900px;
+    max-width: 800px;
   }
 
   .squished .perfect-tweet-above-fold{
@@ -838,10 +830,16 @@ button:focus, button:hover{
     font-size: 16px;
   }
 
+  .tweet-button-container {
+    justify-content: space-between;
+    margin: 0px;
+  }
+
   .squished .tweet-button-container {
     display: inline-block;
     margin:0px;
     padding:0px;
+    width: 300px;
   }
 
   #tweet-button, #reperfect-button{
@@ -850,7 +848,7 @@ button:focus, button:hover{
     padding:10px;
     height: width;
     font-size: 14px;
-    margin: 10px;
+    margin-left: 10px;
   }
 
   .squished #tweet-button, .squished #reperfect-button {
@@ -881,8 +879,28 @@ button:focus, button:hover{
     flex-flow: row;
   }
 
+  .extra-people-container p {
+    font-size: 20px;
+
+  }
+
   .form-and-description{
     align-self: center;
+    max-width: 45%;
+    margin-right: 50px;
+    margin-left: 20px;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  #topic-form label{
+    width:100%;
+  }
+
+  .description-container {
+    padding: 0px;
   }
 
   .perfect-tweet-container{
@@ -892,7 +910,7 @@ button:focus, button:hover{
   }
 
   .perfect-tweet-text-box p{
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .logo-container{
