@@ -20,10 +20,9 @@ STATE = {
 
 //This checks if all of the text apis have returned usable content. After which it creates a 'Perfect Tweet'
 const allCallsDone = (source) => {
-  if (source, STATE.wiki.extract !== '' && typeof STATE.twitter[0] === 'object' && typeof
-    STATE.news[0] === 'object') {
+  if (source, STATE.wiki.extract !== '' && typeof STATE.twitter[0] === 'object' && typeof STATE.news[0] === 'object') {
     toggleGifSelection()
-    populatePerfectTweet()
+    populatePerfectTweet()  
     console.log(STATE)
   }
 }
@@ -53,8 +52,11 @@ const selectGif = (index) => {
   }
   //This toggles the new gif on
   toggleGifSelection()
-  $('.perfect-tweet-container').find('img').attr('src', STATE.giphy[STATE.currentGifIndex].images.original.url)
-  $('.perfect-tweet-container').find('img').attr('alt', STATE.giphy[STATE.currentGifIndex].title)
+  $('.perfect-tweet-container').find('img').attr({
+    'src': STATE.giphy[STATE.currentGifIndex].images.original.url, 
+    'alt': STATE.giphy[STATE.currentGifIndex].title
+  })
+
 }
 
 const switchToRandomGifIndex = (currentIndex) => {
