@@ -59,7 +59,7 @@ const createSingleNewsArticle = result => {
   return `
     <article class="news-article">
       <header class="news-headline">
-        <a href="${result.url}"><h2>${result.title}</h2></a>
+        <a href="${result.url}" target="_blank"><h2>${result.title}</h2></a>
         <h3>${result.source.name} - by ${result.author}</h3>
       </header>
       <div class="news-text">
