@@ -18,7 +18,7 @@ body{
   background-color: #118AA6;
 }
 
-p, pre, footer {
+p, pre, footer , li{
   font-family: 'Gothic A1', sans-serif;
 }
 
@@ -30,6 +30,15 @@ pre {
 
 h1, h2, h3, a {
   font-family: gotham, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #118AA6;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 h3{
@@ -77,7 +86,7 @@ button:focus, button:hover{
 
 .start-above-the-fold{
   background-color: #6BC0D4;
-  min-height: 680px;
+  min-height: 570px;
   display:flex;
   flex-flow: column;
   justify-content: center;
@@ -91,7 +100,7 @@ button:focus, button:hover{
 .logo-container{
   width: 90%;
   align-self: center;
-  max-width: 600px;
+  max-width: 550px;
   margin: 20px 0px;
 }
 
@@ -133,12 +142,15 @@ button:focus, button:hover{
 
 .description-container {
   color:#024555;
-  padding: 5px 40px;
+  padding:10px;
 }
 
-.description-container p {
+.description p{
   font-family: gotham, sans-serif;
-  font-size: 18px;
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+  margin:0px;
 }
 
 @keyframes pulsate {
@@ -202,10 +214,10 @@ button:focus, button:hover{
 
 .extra-header {
   color: white;
-  border: solid #FFDB7D 2px; 
   padding: 30px;
+  margin:0px;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 6em;
 }
 
 .extra-people-container{
@@ -223,8 +235,13 @@ button:focus, button:hover{
   width: 100%;
   position: relative;
   display: flex;
+  flex-flow: column;
   justify-content: center;
   height:100%;
+}
+
+.extra-people-container li {
+  font-size: 20px;
 }
 
 .extra-people-container p {
@@ -246,22 +263,15 @@ button:focus, button:hover{
   font-size: 22px;
 }
 
+.extra-secret-container a{
+  color: #FFB413;
+}
+
 .api-name, .my-name{
   font-family: gothic, sans-serif;
   font-weight: 800;
 }
 
-.extra-logos{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding:0px 5px;
-}
-
-.extra-logos img{
-  width: 25%;
-  align-self: center;
-}
 
 /* END start screen stuff */
 
@@ -725,6 +735,7 @@ button:focus, button:hover{
   }
   
   .extra-people-container p {
+    margin:auto;
     font-size: 14px;
     min-height: 100%;
     padding-top: 5px;
@@ -742,28 +753,6 @@ button:focus, button:hover{
   
   .extra-secret-container p{
     font-size: 18px;
-  }
-
-  .extra-apis{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .extra-logos{
-    flex-flow: row wrap;
-    width:30%;
-  }
-  
-  .extra-logos img{
-    width: 50%;
-    align-self: center;
-  }
-
-  .extra-apis p {
-    width: fit-content;
-    font-size: 24px;
-    padding: 20px;
-
   }
 
   /* BEGIN - perfect tweet page */
@@ -887,6 +876,7 @@ button:focus, button:hover{
   .form-and-description{
     align-self: center;
     max-width: 45%;
+    /* min-width: 450px; */
     margin-right: 50px;
     margin-left: 20px;
   }
