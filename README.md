@@ -10,7 +10,7 @@ _Infinite RANDOM SILLY Tweets_
 
 ### Why?
 
-The world doesn't make sense any more. So why should YOU have to?RNDMTWTR gives you a limitless supply of incomprehensible (and hilarious) tweets!
+The world doesn't make sense any more. So why should YOU have to? RNDMTWTR gives you a limitless supply of incomprehensible (and hilarious) tweets!
 
 ### But HOW?
 
