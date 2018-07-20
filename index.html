@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Perfect Tweet</title>
+  <title>RNDMTWTR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
@@ -14,12 +14,12 @@
     <div class="app-container">
 
       <!-- This is the start screen -->
-      <div class="start-screen" aria-live="assertive">
+      <div class="start-screen" aria-live="assertive" hidden>
 
         <!-- This is the above the Fold Section -->
         <section role="region" class="start-above-the-fold">
           <div class="logo-container">
-            <img src="./assets/images/logos/LogoLarge.png" alt="Perfect Tweet...">
+            <img src="./assets/images/logos/LogoLarge.png" alt="RNDMTWTR...">
           </div>
           <div class="form-and-description">
             <div class="form-container">
@@ -27,7 +27,7 @@
                 <label>
                   <input type="text" placeholder="Pick any topic..." name="topic-text">
                 </label>
-                <button id="go-button" type="submit"> <span class="extreme-text">Go!</span></button>
+                <button id="go-button" type="submit">Go!</button>
               </form>
             </div>
             <div class="description-container">
@@ -69,6 +69,17 @@
             </div>
             <img src="./assets/images/real-people/Girl2.jpg" alt="A woman is looking at her phone with a silly surpirsed expression. A speach bubble reads 'This is so stupid... but it's sooooo good!">
           </div>
+
+          <div class="extra-secret-container">
+            <h1>Seriously Why?</h1>
+            <p>Computers can be more than useful. They can also be very funny. If you enjoy this app. There are some truly delightful things that inspired it. Check out:</p>
+            <ul>
+              <li><a href="http://aiweirdness.com/tagged/cookbook" target="_blank" >Machine Learning Recipes</a>: Someone crammed thousands of digital recipes. The results are amazing.</li>
+              <li><a href="https://arstechnica.com/gaming/2016/06/an-ai-wrote-this-movie-and-its-strangely-moving/" target="_blank" >Computer creates Sci-Fi Screen Play</a>: And then they filmed it with real actors.</li>
+              <li><a href="http://benedictcumberbatchgenerator.tumblr.com/" target="_blank" >This delightfully stupid thing</a>: The less we tell you the better.</li>
+            </ul>
+            <p>Hope this controlled randomness takes your mind of the terrifying unpredictability that permeates our world.</p>
+          </di>
         </section>
 
         <!-- end extra info on the start screen -->
@@ -78,18 +89,18 @@
 
 
       <!-- This is the tweet screen -->
-      <div class="perfect-tweet-screen" aria-live="assertive" hidden>
+      <div class="perfect-tweet-screen" aria-live="assertive">
 
         <div class="scroll-top">
           <div class="top-bar">
-            <img src="./assets/images/logos/Logo.png" alt="perfect tweet">
-            <button id="start-over-button"><span class="extreme-text">Start</span> Over</button>
+            <img src="./assets/images/logos/Logo.png" alt="RNDMTWTR">
+            <button id="start-over-button">Start Over</button>
           </div>
           <section role="region" class="perfect-tweet-above-fold">
             <div class="perfect-tweet-container">
               <img src="./assets/images/Loading.gif" alt="image Loading">
               <div class="perfect-tweet-text-box">
-                <p contenteditable>This is the perfect tweet. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly 240
+                <p contenteditable>This is the RNDMTWTR. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly 240
                   characters, which is the longest we can possibly tweet. #Wow #exactly240characters #definitely #WorthIt
                   @billgates @therealslimshady</p>
               </div>
@@ -107,8 +118,9 @@
 
         <div class="info-container">
           <!-- Giphy info screen -->
-          <section role="region" class="info-giphy ">
-            <img class="logo-left" src="./assets/images/apiLogos/giphyLogo.png" alt="giphy logo">
+          <section role="region" class="info-giphy info-box">
+            <img class="logo-right" src="./assets/images/apiLogos/giphyLogo.png" alt="giphy logo">
+            <h1 class="extreme-text gif-header">Choose a GIF</h1>
             <div action="#" class="giphy-gifs">
               <buton class="gif-block selected-gif">
                 <img src="./assets/images/Loading.gif" alt="test" />
@@ -126,7 +138,7 @@
           </section>
 
           <!-- Wikipedia Info Screen -->
-          <section role="region" class="info-wiki">
+          <section role="region" class="info-wiki info-box">
             <img class="logo-right" src="./assets/images/apiLogos/wikiLogo.png" alt="Wikipedia">
             <article class="">
               <div class="wiki-title extreme-text">
@@ -152,8 +164,9 @@
 
           </section>
           <!-- Twitter Info Screen -->
-          <section role="region" class="info-twitter">
-            <img class="logo-left" src="./assets/images/apiLogos/twitterLogo.png" alt="twitter">
+          <section role="region" class="info-twitter info-box">
+            <img class="logo-right" src="./assets/images/apiLogos/twitterLogo.png" alt="twitter">
+            <h1 class="extreme-text twitter-header">Other tweets</h1>
             <div class="twitter-users">
               <div class="twitter-user">
                 <div class="twitter-user-splash">
@@ -171,7 +184,7 @@
                   </div>
                 </div>
                 <div class="twitter-user-tweet">
-                  <p>This is the perfect tweet. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
+                  <p>This is the RNDMTWTR. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
                     240 characters, which is the longest we can possibly tweet. #Wow #exactly240characters #definitely #WorthIt
                     @billgates @therealslimshady</p>
                 </div>
@@ -192,7 +205,7 @@
                   </div>
                 </div>
                 <div class="twitter-user-tweet">
-                  <p>This is the perfect tweet. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
+                  <p>This is the RNDMTWTR. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
                     240 characters, which is the longest we can possibly tweet. #Wow #exactly240characters #definitely #WorthIt
                     @billgates @therealslimshady</p>
                 </div>
@@ -213,7 +226,7 @@
                   </div>
                 </div>
                 <div class="twitter-user-tweet">
-                  <p>This is the perfect tweet. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
+                  <p>This is the RNDMTWTR. It’s got some text. It definitely makes sense. It’s amazing. It uses exactly
                     280 characters, which is the longest we can possibly tweet. #Wow #exactly240characters #definitely #WorthIt
                     @billgates @therealslimshady</p>
                 </div>
@@ -222,10 +235,9 @@
           </section>
 
           <!-- newsAPI info Screen -->
-          <section role="region" class="info-news">
+          <section role="region" class="info-news info-box">
             <img class="logo-right" src="./assets/images/apiLogos/newsLogo.png" alt="News">
-            <h2 class="news-header">News About - </h2>
-            <h1 class="js-topic">Topic</h1>
+            <h1 class="js-topic">News about - Topic</h1>
             <div class="all-articles">
               <article class="news-article">
                 <header class="news-headline">

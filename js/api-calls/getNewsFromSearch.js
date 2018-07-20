@@ -41,7 +41,7 @@ const getEverythingFromSearch = (query) => {
       populateNews()
       allCallsDone('News')
     } else {
-      getNewsFromSearch('perfect')
+      getNewsFromSearch('random')
     }
 
   })
@@ -52,7 +52,7 @@ const getEverythingFromSearch = (query) => {
 const populateNews = () => {
   var renderedNews = STATE.news.map(item => createSingleNewsArticle(item))
   $(".all-articles").html(renderedNews)
-  $(".js-topic").html(STATE.topic)
+  $(".js-topic").html('News About - ' + STATE.topic)
 }
 
 const createSingleNewsArticle = result => {

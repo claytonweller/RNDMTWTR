@@ -18,7 +18,7 @@ const populateGiphy = results => {
     let output = results.data.map(renderGiphyObject)
     $(".giphy-gifs").html(output)
   } else {
-    getGiphyFromSearch('tweet')
+    getGiphyFromSearch('random')
   }
 
 }

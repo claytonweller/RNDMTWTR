@@ -76,10 +76,12 @@ footer{
 
 button {
   border: #FFBE13 solid 2px;
-  background-color: #024555;
+  background-color: #802104;
   color:#FFB413;
   font-family: gotham, sans-serif;
+  font-family: 'rusticoregular', sans-serif;
   transition-duration: 200ms; 
+  padding-top: 5px;
 }
 
 button:focus, button:hover{
@@ -148,7 +150,7 @@ button:focus, button:hover{
 
 #go-button {
   font-size: 42px;
-  padding: 5px 10px 5px 5px;
+  padding: 10px 10px 5px 5px;
 }
 
 .description-container {
@@ -488,6 +490,10 @@ button:focus, button:hover{
   max-width: 800px;
 }
 
+.info-box {
+  position: relative;
+}
+
 .logo-left {
   width: 60px;
   position: absolute;
@@ -496,9 +502,9 @@ button:focus, button:hover{
 
 .logo-right {
   width: 60px;
-  position: relative;
-  float:right;
-  transform: translate(0px, -30px)
+  position: absolute;
+  right: 0px;
+  top: -30px
 }
 
 /* This is the style for the GIPHY info */
@@ -507,6 +513,11 @@ button:focus, button:hover{
   border: solid #FFDB7D 2px;
   padding: 5px;
   margin-bottom: 40px;
+}
+
+.gif-header, .twitter-header {
+  color: white;
+  margin: 5px 10px;
 }
 
 .squished .info-giphy {
@@ -545,15 +556,15 @@ button:focus, button:hover{
   padding: 1px 15px;
   color: #024555;
   margin-bottom: 50px;
+  padding-bottom: 20px;
   height: fit-content;
 }
 
 .info-wiki article {
-  max-height: 300px;  
+  max-height: 310px;  
   overflow: hidden;
   width: 100%;
   position: relative;
-  top: -30px;
 }
 
 .info-wiki .revealed {
@@ -571,11 +582,12 @@ button:focus, button:hover{
 
 .info-wiki h1 {
   font-family: 'rusticoregular', sans-serif;
+  padding-top:20px
 }
 
 #more-wiki-button{
   position: relative;
-  bottom: 15px;
+  bottom: -7px;
   border:none;
   background-color: transparent;
   color: #024555;
@@ -591,10 +603,6 @@ button:focus, button:hover{
   border: solid #FFDB7D 2px;
   padding: 5px;
   margin-bottom: 40px;
-}
-
-.twitter-users {
-  padding-top:25px;
 }
 
 .twitter-user {
@@ -768,7 +776,7 @@ button:focus, button:hover{
   }
   
   .extra-secret-container{
-    max-width: 700px;
+    max-width: 800px;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -807,6 +815,10 @@ button:focus, button:hover{
 
   .twitter-user-splash{
     height: 90px;
+  }
+
+  .twitter-user-info{
+    width: 200px;
   }
 
   .grid-lower-left{
