@@ -614,7 +614,6 @@ button:focus, button:hover{
 .twitter-user-splash {
   height: 80px;
   display: flex;
-  width: 100%;
 }
 
 .twitter-user-grid {
